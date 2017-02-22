@@ -6,6 +6,7 @@
 
 # Dir["/Users/developer/robos-silvio/*.rb"].each {|file| require file }
 require './robot'
+require './positions'
 
 
 # File.foreach("commands.txt") do |line|
@@ -17,6 +18,12 @@ require './robot'
 
 ## PLACE inplicity...
 robot = Robot.new(x: 0, y: 0, face: "NORTH")
+robot.command("MOVE")
+robot.command("MOVE")
+robot.command("MOVE")
+robot.command("MOVE")
+robot.command("MOVE")
+robot.command("LEFT")
 robot.command("MOVE")
 robot.command("REPORT")
 puts "FINISHED"

@@ -1,48 +1,24 @@
 class Robot
-  attr_accessor :x, :y, :face
+  attr_accessor :face
 
   def initialize(args)
-    @x = args.fetch(:x)
-    @y = args.fetch(:y)
-    @face = args.fetch(:face)
+    @position = Position.new(args.fetch(:x), args.fetch(:y))
+    @face = Object.const_get(args.fetch(:face).downcase.capitalize)
   end
 
   def command(command)
     if (command == "MOVE")
-      move
+      @position = @face.move(@position)
     elsif (command == "REPORT")
       report
     elsif (command == "LEFT")
-      rotate
-    else
+      @face = @face.left
+    elsif (command == "RIGHT")
+      @face = @face.left
     end
   end
 
-  def move
-    send("move_#{@face.downcase}!")
-  end
-
   def report
-    puts "#{@x}, #{@y}, #{@face}"
-  end
-
-  def rotate(navigator = Navigator)
-    @face = navigator.get_direction(@face, "LEFT")
-  end
-
-  def move_north!
-    @y+=1 if @y != 5
-  end
-
-  def move_south!
-    @y-= 1 if @y != 0
-  end
-
-  def move_east!
-    @x+=1 if @x != 5
-  end
-
-  def can_move_west?
-    @x-=1 if @x != 0
+    puts "#{@position}, #{@face}"
   end
 end
