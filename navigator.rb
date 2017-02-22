@@ -9,7 +9,7 @@ class Navigator
 
   def get_direction
     index_array = coordinates.find_index(@face)
-    if direction == "LEFT"
+    if direction == "RIGHT"
       index_array = 3 if index_array == 0
       coordinates[index_array + 1]
     else
